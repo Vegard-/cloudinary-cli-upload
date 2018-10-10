@@ -83,8 +83,11 @@ function logError(e) {
 var images = argv._;
 var options = {
   folder: argv.folder,
-  filename: !!argv.filename
 };
+if (argv.filename) {
+  options.use_filename = true
+  options.unique_filename = false
+}
 
 uploader.uploadImages(images, options, function (err, result) {
   if (err) {
