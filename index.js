@@ -44,6 +44,11 @@ var argv = yargs
     describe: 'Print result as JSON',
     type: 'boolean'
   })
+  .option('filename', {
+    demand: false,
+    describe: 'Use filename as the public id',
+    type: 'boolean'
+  })
   .help('h')
   .alias('h', 'help')
   .example(
@@ -77,7 +82,8 @@ function logError(e) {
 
 var images = argv._;
 var options = {
-  folder: argv.folder
+  folder: argv.folder,
+  filename: !!argv.filename
 };
 
 uploader.uploadImages(images, options, function (err, result) {
